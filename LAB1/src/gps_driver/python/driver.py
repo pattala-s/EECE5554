@@ -20,7 +20,7 @@ def mynode():
   while(not rospy.is_shutdown()):
     #sac = ser.readline()
     sac = str(ser.readline())
-    if 'GGA' in str(sac):
+    if 'GPGGA' in str(sac):
         print(sac)
         H = float(sac.split(",")[1])
         x = float(sac.split(",")[2])
