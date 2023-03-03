@@ -31,6 +31,7 @@ def mynode():
         lat = str(x)
         lon = str(a)
         time = str(H)
+        print("...........")
         
         #print (float(lat[:2])+float(lat[2:])/60)
         sec = float(time[:2])*60*60+float(time[2:4])*60+float(time[4:6])
