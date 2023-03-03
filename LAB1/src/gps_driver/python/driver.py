@@ -11,11 +11,11 @@ def mynode():
   pub = rospy.Publisher('gps', gps_msg, queue_size=10)
   rospy.init_node('mynode','anonymous=True')
   port = rospy.myargv(argv=sys.argv)
-  name = port[1]
+  port = port[1]
   
   rate = rospy.Rate(10) # 10hz
   msg = gps_msg()
-  ser = serial.Serial(name, baudrate="4800")
+  ser = serial.Serial(port, baudrate="4800")
 
   while(not rospy.is_shutdown()):
     #sac = ser.readline()
