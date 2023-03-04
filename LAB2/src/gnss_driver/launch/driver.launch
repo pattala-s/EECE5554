@@ -1,0 +1,7 @@
+<launch> 
+<arg name ="name"/>
+
+        <node name="mygps" pkg="gnss_driver" type="driver.py" output="screen" args="$(arg name)">
+         
+        </node>
+</launch> 
