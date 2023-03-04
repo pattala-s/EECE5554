@@ -1,7 +1,7 @@
 <launch> 
 <arg name ="port"/>
 
-        <node port="mynode" pkg="gps_driver" type="driver.py" output="screen" args="$(arg name)">
+        <node port="mynode" pkg="gps_driver" type="driver.py" output="screen" args="$(arg port)">
          
         </node>
 </launch> 
