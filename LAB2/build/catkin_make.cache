@@ -1,2 +1,0 @@
-gnss_driver
--DCATKIN_DEVEL_PREFIX=/home/srinidhi/EECE5554/LAB2/devel -DCMAKE_INSTALL_PREFIX=/home/srinidhi/EECE5554/LAB2/install -G Unix Makefiles
