@@ -50,7 +50,7 @@ def imu():
             DATA.Header.stamp.nsecs=now.nsecs
             
             DATA.raw_IMU= linestring
-            #print("success")
+         
             pub.publish(DATA)
             rospy.loginfo(DATA)
 
@@ -61,12 +61,12 @@ def degreestoquaternions(rollr,rollp,rolly):
     radp=float(rollp)*pi/180
     rady=float(rolly)*pi/180
     
-    qx = np.sin(radr/2) * np.cos(radp/2) * np.cos(rady/2) - np.cos(radr/2) * np.sin(radp/2) * np.sin(rady/2)
-    qy = np.cos(radr/2) * np.sin(radp/2) * np.cos(rady/2) + np.sin(radr/2) * np.cos(radp/2) * np.sin(rady/2)
-    qz = np.cos(radr/2) * np.cos(radp/2) * np.sin(rady/2) - np.sin(radr/2) * np.sin(radp/2) * np.cos(rady/2)
-    qw = np.cos(radr/2) * np.cos(radp/2) * np.cos(rady/2) + np.sin(radr/2) * np.sin(radp/2) * np.sin(rady/2)
+    a = np.sin(radr/2) * np.cos(radp/2) * np.cos(rady/2) - np.cos(radr/2) * np.sin(radp/2) * np.sin(rady/2)
+    b = np.cos(radr/2) * np.sin(radp/2) * np.cos(rady/2) + np.sin(radr/2) * np.cos(radp/2) * np.sin(rady/2)
+    c = np.cos(radr/2) * np.cos(radp/2) * np.sin(rady/2) - np.sin(radr/2) * np.sin(radp/2) * np.cos(rady/2)
+    d = np.cos(radr/2) * np.cos(radp/2) * np.cos(rady/2) + np.sin(radr/2) * np.sin(radp/2) * np.sin(rady/2)
     
-    return [qx, qy, qz, qw]
+    return [a, b, c, d]
     
 
 if __name__ =="__main__":

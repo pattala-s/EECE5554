@@ -3,24 +3,16 @@
 
 # In[169]:
 
-
-import pandas as pd
 import matplotlib.pyplot as plt
 from mpl_toolkits import mplot3d
 import numpy as np
 from numpy import arange
 import math
+import pandas as pd
 import allantools
 
 
-# In[154]:
-
-
 LocationD = pd.read_csv('imu.csv')
-
-
-# In[299]:
-
 
 LocationD_x = []
 LocationD_y = []
@@ -47,11 +39,6 @@ for i in LocationD[".data"]:
 for i in LocationD[".header.stamp.secs"][1:]:
     time.append(i-LocationD[".header.stamp.secs"][0])
 
-# print(len(LocationD))
-
-
-# In[318]:
-
 
 r = 40
 (t2, ad, ade, adn) = allantools.adev(np.array(LocationD_x), rate=r, data_type="freq", taus="decade")
@@ -67,10 +54,6 @@ plt.ylabel(r'$\sigma(\tau)$')
 plt.title("Allan Deviation")
 plt.legend()
 plt.show()
-
-
-# In[307]:
-
 
 slope = -0.5
 logtau = np.log10(t2)
@@ -134,10 +117,6 @@ plt.title("Allan Deviation with Angle random walk (Gyro)")
 plt.grid(True, which = "both")
 plt.legend()
 plt.show()
-
-
-# In[302]:
-
 
 slope = 0.5
 logtau = np.log10(t2)
@@ -204,10 +183,6 @@ plt.title("Allan Deviation with Rate random walk (Gyro)")
 plt.grid(True, which = "both")
 plt.legend()
 plt.show()
-
-
-# In[317]:
-
 
 slope = 0
 logtau = np.log10(t2)
@@ -278,10 +253,6 @@ plt.grid(True, which = "both")
 plt.legend()
 plt.show()
 
-
-# In[319]:
-
-
 plt.plot(time[:635639],LocationD_x,label = "Gyro_x")
 plt.plot(time[:635639],LocationD_y,label = "Gyro_y")
 plt.plot(time[:635639],LocationD_z,label = "Gyro_z")
@@ -291,11 +262,6 @@ plt.title("Gyro vs Time")
 plt.ylim(-0.02,0.02)
 plt.legend()
 plt.show()
-
-
-# In[305]:
-
-
 
 r = 40
 (ta2, aad, aade, aadn) = allantools.adev(np.array(LocationD_ax), rate=r, data_type="freq", taus="decade")
@@ -311,9 +277,6 @@ plt.ylabel(r'$\sigma(\tau)$')
 plt.title("Allan Deviation")
 plt.legend()
 plt.show()
-
-
-# In[312]:
 
 
 slope = -0.5
@@ -378,9 +341,6 @@ plt.title("Allan Deviation with Angle random walk (Acc)")
 plt.grid(True, which = "both")
 plt.legend()
 plt.show()
-
-
-# In[308]:
 
 
 slope = 0.5
@@ -448,9 +408,6 @@ plt.title("Allan Deviation with Rate random walk (Acc)")
 plt.grid(True, which = "both")
 plt.legend()
 plt.show()
-
-
-# In[314]:
 
 
 slope = 0
@@ -522,10 +479,6 @@ plt.grid(True, which = "both")
 plt.legend()
 plt.show()
 
-
-# In[316]:
-
-
 plt.plot(time[:635645],LocationD_ax,label = "Gyro_x")
 plt.plot(time[:635645],LocationD_ay,label = "Gyro_y")
 plt.plot(time[:635645],LocationD_az,label = "Gyro_z")
@@ -534,7 +487,4 @@ plt.ylabel('Raw Sensor data')
 plt.title("Acc vs Time")
 plt.legend()
 plt.show()
-
-
-# In[ ]:
 

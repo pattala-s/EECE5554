@@ -1,12 +1,13 @@
+import matplotlib.pyplot as plt
+import numpy as np
+import seaborn as sns
+import pandas as pd
 import bagpy
 import math
 import csv
 import statistics
 from bagpy import bagreader
-import matplotlib.pyplot as plt
-import numpy as np
-import seaborn as sns
-import pandas as pd
+
 plt.rcParams.update({'font.size': 16})
 
 bag = bagreader('/home/srinidhi/EECE5554/LAB3/src/Data/known.bag')
@@ -19,19 +20,22 @@ z = readings['IMU.orientation.z']* (np.pi/180)
 print(w, readings['IMU.orientation.w'])
 
 
-#def euler_from_quaternion(x, y, z, w):
-t0 = +2.0 * (w * x + y * z)
-t1 = +1.0 - 2.0 * (x * x + y *y)
-roll_x = np.degrees(np.arctan2(t0, t1))
+def euler_from_quaternion(x, y, z, w):
+    t0 = +2.0 * (w * x + y * z)
+    t1 = +1.0 - 2.0 * (x * x + y *y)
+    roll_x = np.degrees(np.arctan2(t0, t1))
 
-t2 = +2.0 * (w * y - z * x)
-t2 = np.where(t2>+1.0, +1.0,t2)
-t2 = np.where(t2<-1.0, -1.0,t2)
-pitch_y = np.degrees(np.arcsin(t2))
+    t2 = +2.0 * (w * y - z * x)
+    t2 = np.where(t2>+1.0, +1.0,t2)
+    t2 = np.where(t2<-1.0, -1.0,t2)
+    pitch_y = np.degrees(np.arcsin(t2))
 
-t3 = +2.0 * (w * z + x * y)
-t4 = +1.0 - 2.0 * (y * y+ z * z)
-yaw_z = np.degrees(np.arctan2(t3, t4))
+    t3 = +2.0 * (w * z + x * y)
+    t4 = +1.0 - 2.0 * (y * y+ z * z)
+    yaw_z = np.degrees(np.arctan2(t3, t4))
+    
+    return roll_x, pitch_y, yaw_z
+
 
 readings['Time'] = readings['Time'] - readings['Time'].min()
 readings['IMU.angular_velocity.x'] = readings['IMU.angular_velocity.x'] - readings['IMU.angular_velocity.x'].min()
